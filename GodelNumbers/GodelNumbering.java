@@ -23,4 +23,19 @@ public class GodelNumbering {
     public long geteNumber() {
         return eNumber;
     }
+
+    public long[] geteSourceSequence() {
+        Stack<Long> sourceSequenceStack = new Stack<Long>();
+        long[] primeFactorization = PrimeNumber.uniquePrimeFactors(eNumber);
+        long startNum = eNumber;
+        int i = primeFactorization.length - 1;
+        while (startNum != 1) {
+            if (startNum % primeFactorization[i] == 0) {
+                startNum /= primeFactorization[i];
+                sourceSequenceStack.push(primeFactorization[i]);
+            } else {
+                i -= 1;
+            }
+        }
+    }
 }
