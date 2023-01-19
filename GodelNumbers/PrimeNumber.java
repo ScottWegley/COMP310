@@ -3,7 +3,7 @@ package GodelNumbers;
 import java.util.ArrayList;
 
 public class PrimeNumber {
-    public static long[] primeFactors(long p) {
+    public static long[] uniquePrimeFactors(long p) {
         ArrayList<Long> factors = new ArrayList<Long>();
         for (long i = 2L; i <= (p); i++) {
             if (p % i == 0) {
