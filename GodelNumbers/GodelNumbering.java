@@ -37,5 +37,10 @@ public class GodelNumbering {
                 i -= 1;
             }
         }
+        long[] sourceSequence = new long[sourceSequenceStack.size()];
+        for (int q = 0; q < sourceSequence.length; q++) {
+            sourceSequence[q] = sourceSequenceStack.pop();
+        }
+        return sourceSequence;
     }
 }
