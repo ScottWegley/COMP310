@@ -9,7 +9,9 @@ public class PrimeNumber {
             if (p % i == 0) {
                 if (isPrime(i)) {
                     factors.add(i);
-                    p = p / i;
+                    while (p % i == 0) {
+                        p = p / i;
+                    }
                 }
             }
         }
