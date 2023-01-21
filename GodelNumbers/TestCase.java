@@ -2,6 +2,7 @@ package GodelNumbers;
 
 public class TestCase {
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
         int[] mySequence = new int[] { 7, 6, 5, 4, 3, 2, 1 };
         GodelNumbering testClass = new GodelNumbering(mySequence);
 
@@ -17,5 +18,6 @@ public class TestCase {
         for (long x : sourceSequence) {
             System.out.print(x + " ");
         }
+        System.out.print("\n" + (System.currentTimeMillis() - start));
     }
 }
