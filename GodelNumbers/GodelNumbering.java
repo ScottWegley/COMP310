@@ -17,7 +17,7 @@ public class GodelNumbering {
         long lastPrime = 1;
         for (int i = 0; i < sequence.length; i++) {
             long currPrime = PrimeNumber.nextPrime(lastPrime);
-            eNumber *= Math.pow(currPrime, sequence[i]);
+            eNumber *= (long)Math.pow(currPrime, sequence[i]);
             lastPrime = currPrime;
             System.out.println(
                     eNumber + "  " + Math.pow(currPrime, sequence[i]) + "  from " + currPrime + "^" + sequence[i]);
