@@ -27,7 +27,6 @@ public class GodelNumbering {
     }
 
     public long[] geteSourceSequence() {
-        Stack<Long> sourceSequenceStack = new Stack<Long>();
         long[] primeFactorization = PrimeNumber.uniquePrimeFactors(eNumber);
         long[] sourceSequence = new long[primeFactorization.length];
         long startNum = eNumber;
@@ -45,7 +44,6 @@ public class GodelNumbering {
                 }
                 previousFactor = primeFactorization[i];
                 startNum /= primeFactorization[i];
-                sourceSequenceStack.push(primeFactorization[i]);
             } else {
                 i -= 1;
             }
