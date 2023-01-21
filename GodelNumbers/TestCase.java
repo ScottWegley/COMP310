@@ -2,21 +2,20 @@ package GodelNumbers;
 
 public class TestCase {
     public static void main(String[] args) {
-        int[] mySequence = new int[] {6,5,4,3,2,1 };
+        int[] mySequence = new int[] { 7, 6, 5, 4, 3, 2, 1 };
         GodelNumbering testClass = new GodelNumbering(mySequence);
 
-        System.out.print("The Godel Number you got was " + testClass.geteNumber() + " from the sequence ");
+        System.out.print("The Godel Number you got from the sequence ");
         for (int i : mySequence) {
             System.out.print(i + " ");
         }
+        System.out.print("was " + testClass.geteNumber());
 
-        if (true) {
-            System.out.print("\nBy Godel Numbering, the sequence reversed from " + testClass.geteNumber() + " is ");
+        System.out.print("\nThe reverse mapped sequence from " + testClass.geteNumber() + " is ");
 
-            long[] sourceSequence = testClass.geteSourceSequence();
-            for (long factor : sourceSequence) {
-                System.out.print(factor + " ");
-            }
+        long[] sourceSequence = testClass.geteSourceSequence();
+        for (long x : sourceSequence) {
+            System.out.print(x + " ");
         }
     }
 }
