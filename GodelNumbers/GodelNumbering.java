@@ -38,8 +38,14 @@ public class GodelNumbering {
         for (int q = 0; q <= i; q++) {
             sourceSequence[q] = 1;
         }
+
+        long previousFactor = 0;
         while (startNum != 1) {
             if (startNum % primeFactorization[i] == 0) {
+                if(previousFactor == primeFactorization[i]){
+                    sourceSequence[i] += 1;
+                }
+                previousFactor = primeFactorization[i];
                 startNum /= primeFactorization[i];
                 sourceSequenceStack.push(primeFactorization[i]);
             } else {
