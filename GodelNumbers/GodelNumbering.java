@@ -1,7 +1,5 @@
 package GodelNumbers;
 
-import java.util.Stack;
-
 public class GodelNumbering {
 
     private long eNumber = 1;

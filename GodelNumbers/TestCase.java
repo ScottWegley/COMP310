@@ -3,7 +3,7 @@ package GodelNumbers;
 public class TestCase {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
-        int[] mySequence = new int[] { 7, 6, 5, 4, 3, 2, 1 };
+        int[] mySequence = new int[] { 1,1,2 };
         GodelNumbering testClass = new GodelNumbering(mySequence);
 
         System.out.print("The Godel Number you got from the sequence ");
