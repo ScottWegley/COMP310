@@ -3,27 +3,85 @@ package Week1;
 import java.util.Arrays;
 
 class Jan26Script {
+    static int comps = 0;
+
     public static void main(String[] args) {
+        double avg = 0;
+        int best = 10;
+        int worst = 0;
         long start = System.currentTimeMillis();
-        System.out.println(median2(1, 2, 3));
-        System.out.println(System.currentTimeMillis() - start);
+        double n = 100000000;
+        for (int i = 0; i < n; ++i) {
+            int x = (int) (Math.random() * 10);
+            int y = (int) (Math.random() * 10);
+            int z = (int) (Math.random() * 10);
+            int m = median4(x, y, z);
+            if (comps < best)
+                best = comps;
+            if (comps > worst)
+                worst = comps;
+            avg += comps;
+            comps = 0;
+        }
+        System.out.println("Time: " + (System.currentTimeMillis() - start));
+        System.out.println("Comps: " + avg / n);
+        System.out.println("Best: " + best);
+        System.out.println("Worst: " + worst);
     }
 
-    //Recorded runtime of 5 ms
-    public static int median(int x, int y, int z){
-        int[] inputs = {x,y,z};
+    // Not in the spirit of the assignment.
+    public static int median(int x, int y, int z) {
+        int[] inputs = { x, y, z };
         Arrays.sort(inputs);
         return inputs[1];
     }
 
-    //Recorded runtime of 1 ms 
-    public static int median2(int x, int y, int z){
-        int max = Math.max(Math.max(x,y), z);
-        int min = Math.min(Math.min(x,y), z);
-        int[] inputs = {x,y,z};
+    // Avg comps: 4.83999 Time: 13542
+    public static int median2(int x, int y, int z) {
+        int max = Math.max(Math.max(x, y), z);
+        int min = Math.min(Math.min(x, y), z);
+        int[] inputs = { x, y, z };
+        int save = 0;
         for (int i : inputs) {
-            if(i != max && i != min) return i;
+            comps += 2;
+            if (i != max && i != min) {
+                return i;
+            } else {
+                save = i;
+            }
         }
-        return -1;
+        comps++;
+        return (save == max ? max : min);
+    }
+
+    /*
+     * public static int median3(int x, int y, int z){
+     * 
+     * }
+     */
+
+    // Avg comps: 2.385 Time: 11650
+    public static int median4(int x, int y, int z) {
+        comps += 1;
+        if (x > y) {
+            comps += 1;
+            if (y > z) { 
+                return y;
+            } else {
+                return z;
+            }
+        } else {
+            comps += 1;
+            if (x > z) {
+                return x;
+            } else { 
+                comps += 1;
+                if (y > z) {
+                    return z;
+                } else {
+                    return y;
+                }
+            }
+        }
     }
 }
