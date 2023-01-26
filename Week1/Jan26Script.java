@@ -10,7 +10,7 @@ class Jan26Script {
         int best = 10;
         int worst = 0;
         long start = System.currentTimeMillis();
-        double n = 100000000;
+        double n = 10000000;
         for (int i = 0; i < n; ++i) {
             int x = (int) (Math.random() * 10);
             int y = (int) (Math.random() * 10);
@@ -22,6 +22,7 @@ class Jan26Script {
                 worst = comps;
             avg += comps;
             comps = 0;
+            // System.out.println("X:" + x + " Y: " + y + " Z:" + z + " M:" + m);
         }
         System.out.println("Time: " + (System.currentTimeMillis() - start));
         System.out.println("Comps: " + avg / n);
@@ -60,26 +61,31 @@ class Jan26Script {
      * }
      */
 
-    // Avg comps: 2.385 Time: 11650
-    public static int median4(int x, int y, int z) {
+    // Avg comps: 2.714 Time: 11650
+    public static int median4(int a, int b, int c) {
         comps += 1;
-        if (x > y) {
+        if (a > b) {
             comps += 1;
-            if (y > z) { 
-                return y;
+            if (a < c) {
+                return a;
             } else {
-                return z;
+                comps += 1;
+                if (b > c) {
+                    return b;
+                } else {
+                    return c;
+                }
             }
         } else {
             comps += 1;
-            if (x > z) {
-                return x;
-            } else { 
+            if (a > c) {
+                return a;
+            } else {
                 comps += 1;
-                if (y > z) {
-                    return z;
+                if (b < c) {
+                    return b;
                 } else {
-                    return y;
+                    return c;
                 }
             }
         }
