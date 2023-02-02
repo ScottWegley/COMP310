@@ -12,7 +12,7 @@ public class Dice {
      * @param _sides The number of sides the dice should have.
      */
     public Dice(int _sides) {
-        if(_sides < 0) {
+        if(_sides <= 0) {
             _sides = 6;
         }
         this.sides = _sides;
