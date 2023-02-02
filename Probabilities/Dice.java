@@ -16,11 +16,20 @@ public class Dice {
         if (inSides.length < this.sides) {
             return false;
         }
-        enableCustomSides();
+        customSidesEnabled = true;
         customSides = new int[sides];
         for (int i = 0; i < customSides.length; i++) {
             customSides[i] = inSides[i];
         }
         return true;
+    }
+
+    public void disableCustomSides(){
+        customSidesEnabled = false;
+        customSides = null;
+    }
+
+    public boolean hasCustomSides() {
+        return customSidesEnabled;
     }
 }
