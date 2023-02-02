@@ -32,4 +32,9 @@ public class Dice {
     public boolean hasCustomSides() {
         return customSidesEnabled;
     }
+
+    public int roll() {
+        int result = random.nextInt(this.sides) + 1;
+        return (customSidesEnabled ? customSides[result - 1] : result);
+    }
 }
