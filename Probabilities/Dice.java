@@ -1,15 +1,15 @@
+import java.util.Random;
+
 public class Dice {
 
     private int sides;
     private boolean customSidesEnabled = false;
     private int[] customSides;
+    private Random random;
 
     public Dice(int _sides) {
         this.sides = _sides;
-    }
-
-    public void enableCustomSides() {
-        customSidesEnabled = true;
+        random = new Random();
     }
 
     public boolean enableCustomSides(int[] inSides) {
