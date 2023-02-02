@@ -8,10 +8,20 @@ public class Dice {
     private Random random;
 
     public Dice(int _sides) {
+        if(_sides < 0) {
+            _sides = 6;
+        }
         this.sides = _sides;
         random = new Random();
     }
 
+    public Dice(){
+        this(6);
+    }
+    public Dice(int[] inSides){
+        this(inSides.length);
+        enableCustomSides(inSides);
+    }
     public boolean enableCustomSides(int[] inSides) {
         if (inSides.length < this.sides) {
             return false;
