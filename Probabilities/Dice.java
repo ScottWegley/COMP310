@@ -56,7 +56,7 @@ public class Dice {
     }
 
     /**
-     * Returns the dice to it's original state, disabling custom sides mode and removing the array of custom sides.
+     * Returns the dice to its original state, disabling custom sides mode and removing the array of custom sides.
      */
     public void disableCustomSides(){
         customSidesEnabled = false;

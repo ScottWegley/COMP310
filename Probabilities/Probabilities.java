@@ -1,8 +1,8 @@
 
 class Probabilities {
 
-    public static int N2 = 1000000000;
-    public static int N3 = 1000000000;
+    public static int N2 = 1500000000;
+    public static int N3 = 1500000000;
     public static int N4 = 2;
 
     public static void problem2() {
@@ -75,15 +75,18 @@ class Probabilities {
                         increment = -1;
                     }
                     results[j][q] += increment;
-                    System.out.println("R" + j + ": " + roll1 + " R" + q +": " + roll2 + "   Incrementing " + j + " " + q + " by " + increment);
+                    results[q][j] -= increment;
+                    System.out.println("R" + j + ": " + roll1 + " R" + q + ": " + roll2 + "   Incrementing " + j + " "
+                            + q + " by " + increment + "   Decrementing " + q + " " + j + " by " + increment);
                 }
             }
         }
 
+        System.out.println("     1:  2:  3:  4:");
         for (int i = 0; i < results.length; i++) {
-            System.out.print((i+1) + ":");
+            System.out.print((i + 1) + ":");
             for (int j = 0; j < results[i].length; j++) {
-                System.out.print("  " + results[i][j]);
+                System.out.print("   " + results[i][j]);
             }
             System.out.print('\n');
         }
