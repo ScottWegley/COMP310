@@ -3,6 +3,22 @@ package BinarySearch;
 public class BinarySearch {
 
     public static int run(int[] list, int key) {
+        int start = 0;
+        int end = list.length;
+        int middle;
+        while (start < end) {
+            middle = (start + end) / 2;
+            switch (compare(key, list[middle])) {
+                case -1:
+                    end = middle - 1;
+                    break;
+                case 0:
+                    return middle;
+                case 1:
+                    start = middle + 1;
+                    break;
+            }
+        }
         return -1;
     }
 
