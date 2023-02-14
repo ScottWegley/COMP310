@@ -1,4 +1,4 @@
-package BinarySearch;
+package SearchAlgorithms;
 
 public class BinarySearch {
 
@@ -6,7 +6,7 @@ public class BinarySearch {
         int start = 0;
         int end = list.length;
         int middle;
-        while (start < end) {
+        while (start <= end) {
             middle = (start + end) / 2;
             switch (compare(key, list[middle])) {
                 case -1:
@@ -29,11 +29,10 @@ public class BinarySearch {
      * @return 0 if the values are equal.  -1 if the value you are checking against is greater than the search target.  1 if the search target is greater than the value you are checking against.
      */
     private static int compare(int key, int check){
-        TestCase.count++;
+        TestCase.binaryCount++;
         if(check > key){
             return -1;
         }
-        TestCase.count++;
         if(key > check){
             return 1;
         }
