@@ -3,7 +3,7 @@ package SortingAlgorithms;
 public class BubbleSort {
     public static long internalCount = 0;
     public static long internalCount2= 0;
-    public static void run(int[] toSort) {
+    public static long run(int[] toSort) {
         internalCount = 0;
         int numberOfPairs = toSort.length;
         boolean swapped = true;
@@ -20,9 +20,10 @@ public class BubbleSort {
                 }
             }
         }
+        return internalCount;
     }
 
-    public static void run2(int[] toSort) {
+    public static long run2(int[] toSort) {
         internalCount2 = 0;
         int lower = 0;
         int upper = toSort.length - 1;
@@ -56,19 +57,16 @@ public class BubbleSort {
                 break;
             }
         }
+        return internalCount2;
     }
 
     public static void main(String[] args) {
         int[] myArr = new int[(int)Math.pow(2,5)];
         for (int i = 0; i < myArr.length; i++) {
-            //myArr[i] = i;
+            // myArr[i] = i;
             myArr[myArr.length - 1 - i] = i;
         }
-        //FisherYates.run(myArr);
-        run2(myArr);
-        /* for (int i : myArr) {
-            //System.out.println(i);
-        } */
-        System.out.println("C: " + internalCount2);
+        // FisherYates.run(myArr);
+        System.out.println("C: " + run2(myArr));
     }
 }
