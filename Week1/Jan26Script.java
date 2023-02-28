@@ -12,10 +12,10 @@ class Jan26Script {
         long start = System.currentTimeMillis();
         double n = 10000000;
         for (int i = 0; i < n; ++i) {
-            int x = (int) (Math.random() * 10);
-            int y = (int) (Math.random() * 10);
-            int z = (int) (Math.random() * 10);
-            int m = median4(x, y, z);
+            //int x = (int) (Math.random() * 10);
+            //int y = (int) (Math.random() * 10);
+            //int z = (int) (Math.random() * 10);
+            //int m = median4(x, y, z);
             if (comps < best)
                 best = comps;
             if (comps > worst)
