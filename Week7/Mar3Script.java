@@ -17,4 +17,12 @@ public class Mar3Script {
         
     }
 
+    public static double hornersMethod(double[] coeffs) {
+        double result = coeffs[coeffs.length - 1];
+        for (int i = coeffs.length - 2; i >= 0; i--) {
+            result = result * x;
+            result = result + coeffs[i];
+        }
+        return result;
+    }
 }
