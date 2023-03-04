@@ -11,6 +11,7 @@ public class QuickSort {
     }
 
     private static void QuickSort(int[] list, int first, int last) {
+        internalCount++;
         if (first < last) {
             int pivot = PivotList(list, first, last);
             QuickSort(list, first, pivot - 1);
@@ -22,6 +23,7 @@ public class QuickSort {
         int PivotValue = list[first];
         int PivotPoint = first;
         for (int i = first + 1; i <= last; i++) {
+            internalCount++;
             if(list[i] < PivotValue){
                 PivotPoint++;
                 int temp = list[PivotPoint];

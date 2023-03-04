@@ -11,6 +11,7 @@ public class MergeSort {
     }
 
     private static void MergeSort(int[] list, int first, int last){
+        internalCount++;
         if(first < last){
             int middle = (first + last) / 2;
             MergeSort(list, first, middle);
@@ -25,6 +26,7 @@ public class MergeSort {
         int indexC = 0;
         int[] result = new int[finalEnd - finalStart + 1];
         while(startA <= endA && startB <= endB){
+            internalCount++;
             if(list[startA] < list[startB]){
                 result[indexC] = list[startA];
                 startA++;
@@ -34,6 +36,7 @@ public class MergeSort {
             }
             indexC++;
         }
+        internalCount++;
         if(startA <= endA){
             for (int i = startA; i <= endA; i++) {
                 result[indexC] = list[i];
