@@ -17,7 +17,6 @@ public class QuickSort {
     }
 
     private static void QuickSort(int[] list, int first, int last, PivotMode mode) {
-        internalCount++;
         if (first < last) {
             int pivot = PivotList(list, first, last, mode);
             QuickSort(list, first, pivot - 1, mode);
@@ -82,10 +81,14 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int[] myArr = new int[] { 7, 6, 5, 4, 22, 4, 3, 1, 0, -20, 44, 55, 10 };
-        run(myArr, PivotMode.RANDOM);
+        int[] myArr = new int[(int)Math.pow(2,13)];
+        for (int i = 0; i < myArr.length; i++) {
+            myArr[i] = i;
+        }
+        FisherYates.run(myArr);
+        System.out.println("C:  " + run(myArr, PivotMode.RANDOM));
         for (int i : myArr) {
-            System.out.println(i);
+            // System.out.println(i);
         }
     }
 }
