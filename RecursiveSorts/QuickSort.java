@@ -1,7 +1,5 @@
 package RecursiveSorts;
 
-import java.util.Random;
-
 public class QuickSort {
 
     public static long internalCount = 0L;
@@ -48,6 +46,7 @@ public class QuickSort {
             int PivotValue = list[last];
             int PivotPoint = (first - 1);
             for (int i = first; i < last; i++) {
+                internalCount++;
                 if (list[i] <= PivotValue) {
                     PivotPoint++;
                     int temp = list[PivotPoint];
@@ -67,6 +66,7 @@ public class QuickSort {
             int PivotValue = list[last];
             int PivotPoint = (first - 1);
             for (int i = first; i < last; i++) {
+                internalCount++;
                 if (list[i] < PivotValue) {
                     PivotPoint++;
                     int temp1 = list[PivotPoint];
