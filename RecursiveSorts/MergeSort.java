@@ -11,7 +11,7 @@ public class MergeSort {
     }
 
     private static void MergeSort(int[] list, int first, int last){
-        internalCount++;
+        // internalCount++;
         if(first < last){
             int middle = (first + last) / 2;
             MergeSort(list, first, middle);
@@ -36,7 +36,7 @@ public class MergeSort {
             }
             indexC++;
         }
-        internalCount++;
+        // internalCount++;
         if(startA <= endA){
             for (int i = startA; i <= endA; i++) {
                 result[indexC] = list[i];
@@ -56,8 +56,8 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-        int[] myArr = new int[]{7,6,5,1,10,2,44,32,55,6,0};
-        run(myArr);
+        int[] myArr = new int[]{6, 2, 4, 7, 1, 3, 8, 5};
+        System.out.println("C:   " + run(myArr));
         for (int i : myArr) {
             System.out.println(i);
         }
