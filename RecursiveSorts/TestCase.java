@@ -21,7 +21,7 @@ public class TestCase {
             }
             FisherYates.run(myArr);
             FisherYates.run(myArr1);
-            System.out.println("L: 2^" + q + " C: " + MergeSort.run(myArr1) + "      " + QuickSort.run(myArr));
+            System.out.println("L: 2^" + q + " C: " + MergeSort.run(myArr) + "      " + QuickSort.run(myArr1));
         }
         System.out.println("Ascending Stats");
         System.out.println("Merge, Quick1, Quick2, Quick3");
@@ -37,7 +37,7 @@ public class TestCase {
                 myArr2[i] = i;
                 myArr3[i] = i;
             }
-            System.out.println("L: 2^" + q + " C: " + MergeSort.run(myArr1) + "      " + QuickSort.run(myArr));
+            System.out.println("L: 2^" + q + " C: " + MergeSort.run(myArr) + "      " + QuickSort.run(myArr1));
         }
         System.out.println("Descending Stats");
         System.out.println("Merge, Quick1, Quick2, Quick3");
@@ -53,7 +53,7 @@ public class TestCase {
                 myArr2[myArr2.length - 1 - i] = i;
                 myArr3[myArr3.length - 1 - i] = i;
             }
-            System.out.println("L: 2^" + q + " C: " + MergeSort.run(myArr1) + "      " + QuickSort.run(myArr));
+            System.out.println("L: 2^" + q + " C: " + MergeSort.run(myArr) + "      " + QuickSort.run(myArr1));
         }
     }
 }
