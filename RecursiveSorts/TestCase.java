@@ -8,7 +8,7 @@ public class TestCase {
 
     public static void main(String[] args) {
         System.out.println("Monte Carlo Stats");
-        System.out.println("        Merge, Quick1, Quick2, Quick3");
+        System.out.println("         Merge, QuickF, QuickL, QuickR");
         for (int q = 0; q <= N; q++) {
             int SIZE = (int) Math.pow(2, q);
             int[] myArr = new int[SIZE];
@@ -32,7 +32,7 @@ public class TestCase {
             System.out.println("L: 2^" + q + " C: " + m + "      " + q1 + "      " + q2  + "      " + q3);
         }
         System.out.println("Ascending Stats");
-        System.out.println("        Merge, Quick1, Quick2, Quick3");
+        System.out.println("         Merge, QuickF, QuickL, QuickR");
         for (int q = 0; q <= N; q++) {
             int SIZE = (int) Math.pow(2, q);
             int[] myArr = new int[SIZE];
@@ -48,7 +48,7 @@ public class TestCase {
             System.out.println("L: 2^" + q + " C: " + MergeSort.run(myArr) + "      " + QuickSort.run(myArr1, PivotMode.FIRST) + "      " + QuickSort.run(myArr2, PivotMode.LAST) + "      " + QuickSort.run(myArr3, PivotMode.RANDOM));
         }
         System.out.println("Descending Stats");
-        System.out.println("        Merge, Quick1, Quick2, Quick3");
+        System.out.println("         Merge, QuickF, QuickL, QuickR");
         for (int q = 0; q <= N; q++) {
             int SIZE = (int) Math.pow(2, q);
             int[] myArr = new int[SIZE];
