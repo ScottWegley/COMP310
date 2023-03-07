@@ -25,70 +25,41 @@ public class QuickSort {
     }
 
     private static int PivotList(int[] list, int first, int last, PivotMode mode) {
-        if (mode == PivotMode.FIRST) {
-            int PivotValue = list[first];
-            int PivotPoint = first;
-            for (int i = first + 1; i <= last; i++) {
-                internalCount++;
-                if (list[i] < PivotValue) {
-                    PivotPoint++;
-                    int temp = list[PivotPoint];
-                    list[PivotPoint] = list[i];
-                    list[i] = temp;
-                }
-            }
+        if (mode != PivotMode.FIRST) {
+            int index = (mode == PivotMode.RANDOM ? (int) (Math.random() * (last - first)) + first : last);
             int temp = list[first];
-            list[first] = list[PivotPoint];
-            list[PivotPoint] = temp;
-            return PivotPoint;
-        } else if (mode == PivotMode.LAST) {
-            int PivotValue = list[last];
-            int PivotPoint = (first - 1);
-            for (int i = first; i < last; i++) {
-                internalCount++;
-                if (list[i] <= PivotValue) {
-                    PivotPoint++;
-                    int temp = list[PivotPoint];
-                    list[PivotPoint] = list[i];
-                    list[i] = temp;
-                }
-            }
-            int temp = list[PivotPoint + 1];
-            list[PivotPoint + 1] = list[last];
-            list[last] = temp;
-            return PivotPoint + 1;
-        } else {
-            int pivot = (int) Math.random() * (last - first) + first;
-            int temp = list[pivot];
-            list[pivot] = list[last];
-            list[last] = temp;
-            int PivotValue = list[last];
-            int PivotPoint = (first - 1);
-            for (int i = first; i < last; i++) {
-                internalCount++;
-                if (list[i] < PivotValue) {
-                    PivotPoint++;
-                    int temp1 = list[PivotPoint];
-                    list[PivotPoint] = list[i];
-                    list[i] = temp1;
-                }
-            }
-            int temp1 = list[PivotPoint + 1];
-            list[PivotPoint + 1] = list[last];
-            list[last] = temp1;
-            return PivotPoint + 1;
+            list[first] = list[index];
+            list[index] = temp;
         }
+        int PivotValue = list[first];
+        int PivotPoint = first;
+        for (int i = first + 1; i <= last; i++) {
+            internalCount++;
+            if (list[i] < PivotValue) {
+                PivotPoint++;
+                int temp = list[PivotPoint];
+                list[PivotPoint] = list[i];
+                list[i] = temp;
+            }
+        }
+        int temp = list[first];
+        list[first] = list[PivotPoint];
+        list[PivotPoint] = temp;
+        return PivotPoint;
     }
 
     public static void main(String[] args) {
-        int[] myArr = new int[(int)Math.pow(2,13)];
-        for (int i = 0; i < myArr.length; i++) {
-            myArr[i] = i;
-        }
+        // int[] myArr = new int[(int) Math.pow(2, 4)];
+        int[] myArr = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+        /*
+         * for (int i = 0; i < myArr.length; i++) {
+         * myArr[i] = i;
+         * }
+         */
         FisherYates.run(myArr);
         System.out.println("C:  " + run(myArr, PivotMode.RANDOM));
         for (int i : myArr) {
-            // System.out.println(i);
+            System.out.println(i);
         }
     }
 }
