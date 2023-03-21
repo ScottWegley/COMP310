@@ -1,6 +1,12 @@
 package PolynomialEvaluation;
 
 public class PolynomialEvaluation {
+
+    public static void main(String[] args) {
+        double[] poly = new double[] { 1, 4, 0, -8, 6, 9, 2, -3 };
+        
+    }
+
     /**
      * Evaluate a polynomial in the form of a1x^n+a2x^n-1...+ax^0
      * 
@@ -42,19 +48,19 @@ public class PolynomialEvaluation {
      * @param x The value of x to solve for.
      * @return The result when the specified x is plugged into the equation.
      */
-    public static double preProcessedCoeffs(double[] coeffs, double x){
-        double k = Math.log(coeffs.length)/Math.log(2);
-        double j = Math.pow(2,k-1);
-        double b = coeffs[(int) (j)] - 1;
-        System.out.println("x^" + j + " + " + b);
-        double[] divisor = new double[(int) (coeffs.length-j+1)];
-        divisor[0] = 1;
-        divisor[divisor.length-1] = b;
-        double[] quotient = new double[(int) (coeffs.length-j)];
-        
-        
-        System.out.println("a");
-        return b;
-    }
+    // public static double preProcessedCoeffs(double[] coeffs, double x){
+    //     double k = Math.log(coeffs.length)/Math.log(2);
+    //     double j = Math.pow(2,k-1);
+    //     double b = coeffs[(int) (j)] - 1;
+    //     System.out.println("x^" + j + " + " + b);
+    //     double[] divisor = new double[(int) (coeffs.length-j+1)];
+    //     divisor[0] = 1;
+    //     divisor[divisor.length-1] = b;
+    //     double[] quotient = new double[(int) (coeffs.length-j)];
+             
+    //     System.out.println("a");
+    //     return b;
+    // }
+    // Will probably hopefully never use.
 
 }
