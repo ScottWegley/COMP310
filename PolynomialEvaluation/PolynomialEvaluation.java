@@ -7,14 +7,18 @@ public class PolynomialEvaluation {
 
     public static void main(String[] args) {
         double[] regular = new double[201];
-        double[] poly = new double[] { 1, 4, 0, 8, 6, 9, 2, 3 };
-        for (int i = 0; i <= 200.0; i += 1) {
-            System.out.println(round(((i/5.0) - 20.0),2));
-            // regular[i] = evaluate(poly, i);
-            // regular[(int) Math.round((i+20) * 5)][1] = evaluate(poly, i);
-            // regular[(int) Math.round((i+20) * 5)][0] = i;
+        double[] horners = new double[201];
+        double[] poly = new double[] { 1, 4, 0, 8, 6, 9, 2, 3 }; // x^7 + 4x^6 + 0x^5 + 8x^4 + 6x^3 + 9x^2 + 2x + 3
+        double[][] preProcessedPoly = new double[][] {{1,0,0,0,5},{1,0,1},{1,4},{-1,4},{1,0,1},{1,-11},{1,-26}};
+        //(x^4 + 0x^3 + 0x^2 + 0x + 5) * [(x^2 + 0x + 1) * (x + 4) + (-x + 4)] + [(x^2 + 0x + 1) * (x - 11) + (x - 26)]
+        try {
+            for (int i = 0; i <= 200.0; i += 1) {
+                regular[i] = evaluate(poly, round(((i/5.0) - 20.0),2));
+                horners[i] = hornersMethod(preProcessedPoly[0], round(((i/5.0) - 20.0),2)) * (hornersMethod(preProcessedPoly[1], round(((i/5.0) - 20.0),2))*hornersMethod(preProcessedPoly[2], round(((i/5.0) - 20.0),2))+hornersMethod(preProcessedPoly[3], round(((i/5.0) - 20.0),2))) + (hornersMethod(preProcessedPoly[4], round(((i/5.0) - 20.0),2))*hornersMethod(preProcessedPoly[5], round(((i/5.0) - 20.0),2))+hornersMethod(preProcessedPoly[6], round(((i/5.0) - 20.0),2)));
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
         }
-        System.out.println('a');
     }
 
     public static double round(double value, int places) {
