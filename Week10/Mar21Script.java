@@ -28,11 +28,12 @@ public class Mar21Script {
                 mat[k][j] /= pivot;
                 identity[k][j] /= pivot;
             }
-            for (int i = k + 1; i < n; i++) {
-                double factor = mat[i][k];
+            for (int ii = 0; ii < n; ii++) {
+                if(k==ii) continue;
+                double multipler = mat[ii][k];
                 for (int j = 0; j < n; j++) {
-                    mat[i][j] -= factor * mat[k][j];
-                    identity[i][j] -= factor * identity[k][j];
+                    mat[ii][j] -= multipler * mat[k][j];
+                    identity[ii][j] -= multipler * identity[k][j];
                 }
             }
         }
@@ -64,7 +65,7 @@ public class Mar21Script {
     }
 
     public static void main(String[] args) {
-        double[][] matrix = new double[][] { { 0, -4, 0 }, { 6, -6, 6 }, { 4, 2, 2 } };
+        double[][] matrix = new double[][] { { 2, -4, 6 }, { 6, -6, 6 }, { 4, 2, 2 } };
         double[][] inverse = getInverse(matrix);
         for (int i = 0; i < inverse.length; i++) {
             for (int j = 0; j < inverse.length; j++) {

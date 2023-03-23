@@ -19,7 +19,7 @@ public class Mar16Script {
 
     public static void main(String[] args) {
         double[][] arr1 = { { 2, -4, 6 }, { 6, -6, 6 }, { 4, 2, 2 } };
-        double[][] arr2 = { { -0.2, 1.0/6.0, 0.1 }, { 0.1, -1.0/6.0, 0.2 }, { 0.3, -1.0/6.0, 0.1 } };
+        double[][] arr2 = { { -0.2, .1667, 0.1 }, { .1, -0.1667, 0.2 }, { 0.3, -.1667, 0.1 } };
         double[][] arr3 = matmult(arr1, arr2);
 
         for (int i = 0; i < arr3.length; i++) {
