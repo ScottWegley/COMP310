@@ -6,7 +6,6 @@ public class Mar21Script {
         int n = mat.length;
         if (n != mat[0].length)
             throw new IllegalArgumentException("Matrix must be a square");
-        double[][] inverse = new double[n][n];
         double[][] identity = new double[n][n];
         for (int i = 0; i < n; i++) {
             identity[i][i] = 1;
@@ -37,23 +36,7 @@ public class Mar21Script {
                 }
             }
         }
-
-        for (int k = n - 1; k > 0; k--) {
-            for (int i = k - 1; i >= 0; i--) {
-                double factor = mat[i][k];
-                for (int j = 0; j < n; j++) {
-                    mat[i][j] -= factor * mat[k][j];
-                    identity[i][j] -= factor * identity[k][j];
-                }
-            }
-        }
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                inverse[i][j] = identity[i][j];
-            }
-        }
-        return inverse;
+        return identity;
     }
 
     private static void swapRows(double[][] A, int r1, int r2){
