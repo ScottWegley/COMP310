@@ -43,7 +43,7 @@ public class PolynomialFitting {
             }
         }
 
-        return AlgoTools.matmult(AlgoTools.getInverse(Q),U);
+        return AlgoTools.matmult(AlgoTools.getInverse(Q), U);
     }
 
     /**
@@ -55,8 +55,15 @@ public class PolynomialFitting {
      */
     private static double qpow(double a, double b) {
         double result = a;
-        while (--b > 0) {
-            result *= a;
+        double sign = b / Math.abs(b);
+        if (sign > 0) {
+            while (--b > 0) {
+                result *= a;
+            }
+        } else {
+            while (++b < 0) {
+                result /= a;
+            }
         }
         return result;
     }
@@ -65,7 +72,6 @@ public class PolynomialFitting {
         String filePath = "C:\\Code\\CSC310\\PolynomialFitting\\NoisyLinearData.csv";
         ArrayList<double[]> dataSet = new ArrayList<>();
         String line = "";
-        System.out.println(qpow(2, 3));
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             while ((line = br.readLine()) != null) {
@@ -75,7 +81,6 @@ public class PolynomialFitting {
             br.close();
             double[][] myArr = new double[dataSet.size()][2];
             dataSet.toArray(myArr);
-
             AlgoTools.printMatrix(fitPolynomial(myArr, 1));
         } catch (Exception e) {
             System.out.println(e);
