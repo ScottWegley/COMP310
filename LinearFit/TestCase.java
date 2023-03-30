@@ -9,11 +9,11 @@ import Library.AlgoTools;
 
 public class TestCase {
     public static void main(String[] args) {
-        String filePath = "C:\\Code\\CSC310\\UnnamedAssignment\\NoisyLinearData.csv";
+        String filePath = "C:\\Code\\CSC310\\LinearFit\\NoisyLinearData.csv";
         String line = "";
         double[][] q = { { 0, 0 }, { 0, 0 } };
         double[][] u = { { 0 }, { 0 } };
-        String outPath = "C:\\Code\\CSC310\\UnnamedAssignment\\processed.csv";
+        String outPath = "C:\\Code\\CSC310\\LinearFit\\processed.csv";
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
