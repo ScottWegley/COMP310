@@ -56,14 +56,14 @@ public class PolynomialFitting {
     private static double qpow(double a, double b) {
         double result = a;
         double sign = b / Math.abs(b);
-        if (sign > 0) {
-            while (--b > 0) {
-                result *= a;
-            }
-        } else {
-            while (++b < 0) {
-                result /= a;
-            }
+        if (sign < 0) {
+            b *= -1;
+        }
+        while(--b>0){
+            result *= a;
+        }
+        if(sign < 0){
+            result = 1/result;
         }
         return result;
     }
@@ -72,6 +72,7 @@ public class PolynomialFitting {
         String filePath = "C:\\Code\\CSC310\\PolynomialFitting\\NoisyLinearData.csv";
         ArrayList<double[]> dataSet = new ArrayList<>();
         String line = "";
+        System.out.println(qpow(2, -3));
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             while ((line = br.readLine()) != null) {
