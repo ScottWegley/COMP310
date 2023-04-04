@@ -1,9 +1,10 @@
 package PolynomialFitting;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
-
 import Library.AlgoTools;
 
 public class PolynomialFitting {
@@ -59,20 +60,19 @@ public class PolynomialFitting {
         if (sign < 0) {
             b *= -1;
         }
-        while(--b>0){
+        while (--b > 0) {
             result *= a;
         }
-        if(sign < 0){
-            result = 1/result;
+        if (sign < 0) {
+            result = 1 / result;
         }
         return result;
     }
 
     public static void main(String[] args) {
-        String filePath = "C:\\Code\\CSC310\\PolynomialFitting\\NoisyLinearData.csv";
+        String filePath = "C:\\Code\\CSC310\\PolynomialFitting\\NoisyPolynomialData.csv";
         ArrayList<double[]> dataSet = new ArrayList<>();
         String line = "";
-        System.out.println(qpow(2, -3));
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             while ((line = br.readLine()) != null) {
@@ -82,7 +82,52 @@ public class PolynomialFitting {
             br.close();
             double[][] myArr = new double[dataSet.size()][2];
             dataSet.toArray(myArr);
-            AlgoTools.printMatrix(fitPolynomial(myArr, 1));
+            double[][] outputSet = new double[myArr.length][9];
+            double[][][] matrixResults = new double[8][][];
+            double[][] polynomials = new double[7][];
+            for (int degIndex = 1; degIndex <= 7; degIndex++) {
+                matrixResults[degIndex] = fitPolynomial(myArr, degIndex);
+                double[] poly = new double[matrixResults[degIndex].length]; 
+                for (int i = 0; i < matrixResults[degIndex].length; i++) {
+                    for (int j = 0; j < matrixResults[degIndex][i].length; j++) {
+                        poly[i] = matrixResults[degIndex][i][j];
+                    }
+                }
+
+                AlgoTools.reverseArray(poly);
+                polynomials[degIndex-1] = poly;
+                System.out.println("Polynomial of Degree " + (degIndex));
+                for (double d : poly) {
+                    System.out.print(d + " ");
+                }
+                System.out.print("\n");
+            }
+            for (int i = 0; i < myArr.length; i++) {
+                outputSet[i][0] = myArr[i][0];
+                outputSet[i][1] = myArr[i][1];
+                for (int j = 2; j < outputSet[i].length; j++) {
+                    outputSet[i][j] = AlgoTools.hornersMethod(polynomials[j-2], outputSet[i][0]);
+                }
+            }
+            
+            BufferedWriter[] theWriters = new BufferedWriter[7];
+            String partialPath = "C:\\Code\\CSC310\\PolynomialFitting\\degree";
+            for (int i = 0; i < theWriters.length; i++) {
+                theWriters[i] = new BufferedWriter(new FileWriter(partialPath + (i+1) + ".csv"));
+            }
+
+            for (int i = 0; i < outputSet.length; i++) {
+                for (int j = 0; j < theWriters.length; j++) {
+                    theWriters[j].write(Double.toString(outputSet[i][0])+","+Double.toString(outputSet[i][1]) + ",");
+                }
+                for (int j = 2; j < outputSet[i].length; j++) {
+                    theWriters[j-2].write(Double.toString(AlgoTools.round(outputSet[i][j],3)) + "\n");
+                }
+            }
+
+            for (int i = 0; i < theWriters.length; i++) {
+                theWriters[i].close();
+            }
         } catch (Exception e) {
             System.out.println(e);
             e.printStackTrace();
