@@ -20,6 +20,67 @@ public class AlgoTools {
         return result;
     }
 
+    /**
+     * Returns a polynomial fit to a provided data set.
+     * 
+     * @param data   An array of x,y values to fit a polynomial to.
+     * @param degree The degree of the resultant polynomial.
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public static double[][] fitPolynomial(double[][] data, int degree) throws IllegalArgumentException {
+        if (degree <= 0) {
+            throw new IllegalArgumentException("Degree must be greater than 0");
+        }
+        double[][] Q = new double[degree + 1][degree + 1];
+        double[][] U = new double[degree + 1][1];
+        Q[0][0] = data.length;
+        // This loop iterates over the data set.
+        for (int i = 0; i < data.length; i++) {
+            if (data[i].length != 2) {
+                throw new IllegalArgumentException("Data set is incorrectly sized");
+            }
+            double xVal = data[i][0];
+            double yVal = data[i][1];
+            U[0][0] += yVal;
+            // This loop iterates through the Q matrix.
+            for (int pos = 1; pos <= degree; pos++) {
+                for (int altPos = 0; altPos <= pos; altPos++) {
+                    Q[pos][altPos] += qpow(xVal, pos + altPos);
+                    Q[altPos][pos] += (pos == altPos ? 0 : qpow(xVal, pos + altPos));
+                }
+            }
+            // This loop iterates through the U matrix.
+            for (int pos = 1; pos <= degree; pos++) {
+                U[pos][0] += yVal * qpow(xVal, pos);
+            }
+        }
+
+        return matmult(getInverse(Q), U);
+    }
+
+    /**
+     * A quick power function to save on computations.
+     * 
+     * @param a The base value.
+     * @param b The exponent value.
+     * @return The base value "a" raised to the exponent value "b."
+     */
+    private static double qpow(double a, double b) {
+        double result = a;
+        double sign = b / Math.abs(b);
+        if (sign < 0) {
+            b *= -1;
+        }
+        while (--b > 0) {
+            result *= a;
+        }
+        if (sign < 0) {
+            result = 1 / result;
+        }
+        return result;
+    }
+
     public static double[][] getInverse(double[][] mat) throws IllegalArgumentException {
         int n = mat.length;
         if (n != mat[0].length)
@@ -102,5 +163,17 @@ public class AlgoTools {
         BigDecimal bd = BigDecimal.valueOf(value);
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
+    }
+
+    public static void reverseArray(double[] arr){
+        for (int i = 0; i < arr.length/2; i++) {
+            double temp = arr[i];
+            arr[i] = arr[arr.length - i - 1];
+            arr[arr.length - i - 1] = temp;
+        }
+    }
+
+    public static void main(String[] args) {
+        
     }
 }
