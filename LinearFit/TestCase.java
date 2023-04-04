@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 
 import Library.AlgoTools;
 
@@ -17,10 +18,12 @@ public class TestCase {
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
+            ArrayList<double[]> myList = new ArrayList<>();
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 double xVal = Double.valueOf(data[0]);
                 double yVal = Double.valueOf(data[1]);
+                myList.add(new double[]{xVal,yVal});
                 q[0][0]++;
                 q[0][1] += xVal;
                 q[1][0] += xVal;
@@ -28,8 +31,11 @@ public class TestCase {
                 u[0][0] += yVal;
                 u[1][0] += xVal * yVal;
             }
+            double[][] myArr = new double[myList.size()][];
+            myList.toArray(myArr);
             double[][] c = AlgoTools.matmult(AlgoTools.getInverse(q), u);
             AlgoTools.printMatrix(c);
+            AlgoTools.printMatrix(AlgoTools.fitPolynomial(myArr, 1));
             double[] poly = new double[] { 0.6625, -4.9622 };
             BufferedWriter proWriter = new BufferedWriter(new FileWriter(outPath));
             for (int i = 0; i <= 100; i++) {
