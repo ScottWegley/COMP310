@@ -60,4 +60,13 @@ public class FibonacciSearch {
         return -1;
     }
 
+    public static void main(String[] args) {
+        int[] myArr = new int[100];
+        for (int i = 0; i < myArr.length; i++) {
+            myArr[i] = i;
+        }
+
+        System.out.println(run(myArr, 12));
+    }
+
 }
