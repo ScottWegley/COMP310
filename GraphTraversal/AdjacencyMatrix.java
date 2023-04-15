@@ -16,9 +16,15 @@ public class AdjacencyMatrix {
         if(Math.max(e.fromNode(), e.toNode()) > N){
             throw new IllegalArgumentException("An adjacency matrix of size " + N + " cannot have an edge involving the ID " + Math.max(e.fromNode(), e.toNode()));
         }
-        matrix[e.fromNode()][e.toNode()] = 1;
+        matrix[e.fromNode()-1][e.toNode()-1] = 1;
         if(e.type() == ConnectionType.BIDIRECTIONAL){
-            matrix[e.toNode()][e.fromNode()] = 1;
+            matrix[e.toNode()-1][e.fromNode()-1] = 1;
+        }
+    }
+
+    public void add(Edge[] eArr){
+        for (Edge e : eArr) {
+            add(e);
         }
     }
 }
