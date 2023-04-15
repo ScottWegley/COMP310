@@ -11,6 +11,9 @@ public class AdjacencyList {
 
     public AdjacencyList(int _N){
         list = new ArrayList[_N];
+        for (int i = 0; i < list.length; i++) {
+            list[i] = new ArrayList<Integer>();
+        }
     }
 
     public void add(Edge e){
@@ -32,6 +35,9 @@ public class AdjacencyList {
         }
         N = max;
         list = new ArrayList[N];
+        for (int i = 0; i < list.length; i++) {
+            list[i] = new ArrayList<Integer>();
+        }
         for (Edge e : eArr) {
             add(e);
         }
