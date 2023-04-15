@@ -13,7 +13,7 @@ public class Edge {
     ConnectionType privType;
 
     /**
-     * Creates a unidirectional edge between two nodes.
+     * Creates a {@link ConnectionType#UNIDIRECTIONAL} edge between two nodes.
      * @param _fromNode The node the edge originates from.
      * @param _toNode The node the edge ends at.
      */
