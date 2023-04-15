@@ -1,30 +1,30 @@
 package GraphTraversal;
 
-public class Edge<T> {
+public class Edge {
    
     public enum ConnectionType {
         UNIDIRECTIONAL,
         BIDIRECTIONAL
     }
 
-    private T privFromNode, privToNode;
+    private int privFromNode, privToNode;
     ConnectionType privType;
 
-    public Edge(T _fromNode, T _toNode){
+    public Edge(int _fromNode, int _toNode){
         this(_fromNode,_toNode,ConnectionType.UNIDIRECTIONAL);
     }
 
-    public Edge(T _fromNode, T _toNode, ConnectionType _type){
+    public Edge(int _fromNode, int _toNode, ConnectionType _type){
         privFromNode = _fromNode;
         privToNode = _toNode;
         privType = _type;
     }
 
-    public T fromNode(){
+    public int fromNode(){
         return privFromNode;
     }
 
-    public T toNode(){
+    public int toNode(){
         return privToNode;
     }
 
