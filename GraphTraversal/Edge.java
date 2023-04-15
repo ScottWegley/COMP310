@@ -7,17 +7,29 @@ public class Edge<T> {
         BIDIRECTIONAL
     }
 
-    T fromNode, toNode;
-    ConnectionType type;
+    private T privFromNode, privToNode;
+    ConnectionType privType;
 
     public Edge(T _fromNode, T _toNode){
         this(_fromNode,_toNode,ConnectionType.UNIDIRECTIONAL);
     }
 
     public Edge(T _fromNode, T _toNode, ConnectionType _type){
-        fromNode = _fromNode;
-        toNode = _toNode;
-        type = _type;
+        privFromNode = _fromNode;
+        privToNode = _toNode;
+        privType = _type;
     }
-    
+
+    public T fromNode(){
+        return privFromNode;
+    }
+
+    public T toNode(){
+        return privToNode;
+    }
+
+    public ConnectionType type(){
+        return privType;
+    }
+
 }
