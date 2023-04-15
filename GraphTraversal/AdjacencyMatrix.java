@@ -22,7 +22,15 @@ public class AdjacencyMatrix {
         }
     }
 
-    public void add(Edge[] eArr){
+    public AdjacencyMatrix(Edge[] eArr){
+        int max = 0;
+        for (Edge e : eArr) {
+            if(Math.max(e.fromNode(),e.toNode()) > max){
+                max = Math.max(e.fromNode(), e.toNode());
+            }
+        }
+        N = max;
+        matrix = new int[N][N];
         for (Edge e : eArr) {
             add(e);
         }
