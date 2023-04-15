@@ -27,7 +27,10 @@ public class Edge {
      * @param _toNode The nodes the edge originates at.
      * @param _type The type of the node, either {@link ConnectionType#UNIDIRECTIONAL} or {@link ConnectionType#BIDIRECTIONAL}.
      */
-    public Edge(int _fromNode, int _toNode, ConnectionType _type){
+    public Edge(int _fromNode, int _toNode, ConnectionType _type) throws IllegalArgumentException{
+        if(_fromNode < 0 || _toNode < 0){
+            throw new IllegalArgumentException("0 and below are not acceptable nodes");
+        }
         privFromNode = _fromNode;
         privToNode = _toNode;
         privType = _type;
