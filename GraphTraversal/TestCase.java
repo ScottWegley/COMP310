@@ -5,49 +5,70 @@ import Library.AlgoTools;
 
 public class TestCase {
     public static void main(String[] args) {
-        Edge[] fig8_1a = new Edge[] {
-                new Edge(1, 2, ConnectionType.BIDIRECTIONAL),
-                new Edge(1, 3, ConnectionType.BIDIRECTIONAL),
-                new Edge(2, 4, ConnectionType.BIDIRECTIONAL),
-                new Edge(2, 3, ConnectionType.BIDIRECTIONAL),
-                new Edge(3, 5, ConnectionType.BIDIRECTIONAL),
-                new Edge(5, 4, ConnectionType.BIDIRECTIONAL)
+        Edge[][] arrs = new Edge[][] {
+                {
+                        new Edge(1, 4, ConnectionType.BIDIRECTIONAL),
+                        new Edge(2, 7, ConnectionType.BIDIRECTIONAL),
+                        new Edge(7, 5, ConnectionType.BIDIRECTIONAL),
+                        new Edge(2, 5, ConnectionType.BIDIRECTIONAL),
+                        new Edge(7, 3, ConnectionType.BIDIRECTIONAL),
+                        new Edge(1, 2, ConnectionType.BIDIRECTIONAL),
+                        new Edge(3, 4, ConnectionType.BIDIRECTIONAL),
+                        new Edge(3, 6, ConnectionType.BIDIRECTIONAL),
+                        new Edge(6, 5, ConnectionType.BIDIRECTIONAL),
+                        new Edge(5, 4, ConnectionType.BIDIRECTIONAL)
+                },
+                {
+                        new Edge(1, 5, ConnectionType.BIDIRECTIONAL),
+                        new Edge(1, 4, ConnectionType.BIDIRECTIONAL),
+                        new Edge(5, 6, ConnectionType.BIDIRECTIONAL),
+                        new Edge(6, 7, ConnectionType.BIDIRECTIONAL),
+                        new Edge(7, 4, ConnectionType.BIDIRECTIONAL),
+                        new Edge(4, 3, ConnectionType.BIDIRECTIONAL),
+                        new Edge(3, 2, ConnectionType.BIDIRECTIONAL),
+                        new Edge(2, 4, ConnectionType.BIDIRECTIONAL),
+                },
+                {
+                        new Edge(1, 5),
+                        new Edge(1, 4),
+                        new Edge(1, 2),
+                        new Edge(5, 4),
+                        new Edge(2, 4),
+                        new Edge(2, 3),
+                        new Edge(2, 7),
+                        new Edge(7, 6),
+                        new Edge(4, 6),
+                        new Edge(4, 7),
+                        new Edge(6, 5),
+                        new Edge(3, 4)
+                },
+                {
+                        new Edge(1, 5),
+                        new Edge(1, 4),
+                        new Edge(1, 2),
+                        new Edge(5, 4),
+                        new Edge(2, 3),
+                        new Edge(4, 6),
+                        new Edge(4, 7),
+                        new Edge(4, 3),
+                        new Edge(4, 2),
+                        new Edge(6, 7),
+                        new Edge(3, 7)
+                }
         };
-        Edge[] fig8_1b = new Edge[] {
-                new Edge(1, 2, ConnectionType.BIDIRECTIONAL),
-                new Edge(1, 3),
-                new Edge(3, 2),
-                new Edge(4, 3),
-                new Edge(4, 5, ConnectionType.BIDIRECTIONAL),
-                new Edge(5, 2)
-        };
 
-        AdjacencyMatrix adjMat8_1a = new AdjacencyMatrix(fig8_1a);
-        AdjacencyMatrix adjMat8_1b = new AdjacencyMatrix(fig8_1b);
-
-        AdjacencyList adjList8_1a = new AdjacencyList(fig8_1a);
-        AdjacencyList adjList8_1b = new AdjacencyList(fig8_1b);
-
-        System.out.println("Matrix for 8-1a");
-        AlgoTools.printMatrix(adjMat8_1a.matrix);
-        System.out.println("Matrix for 8-1b");
-        AlgoTools.printMatrix(adjMat8_1b.matrix);
-
-        System.out.println("List for 8-1a");
-        for (int i = 0; i < adjList8_1a.list.length; i++) {
-            System.out.print((i+1) + ":  ");
-            for (int q : adjList8_1a.list[i]) {
-                System.out.print(q + ",  ");
-            }
-            System.out.print('\n');
+        AdjacencyMatrix matricies[] = new AdjacencyMatrix[4];
+        AdjacencyList lists[] = new AdjacencyList[4];
+        for (int i = 0; i < matricies.length; i++) {
+            matricies[i] = new AdjacencyMatrix(arrs[i]);
+            lists[i] = new AdjacencyList(arrs[i]);
+            System.out.println("Graph " + (i+1));
+            DepthFirstTraversal.run(matricies[i], 1);
+            DepthFirstTraversal.run(lists[i],1);
+            // System.out.println("Example " + (i+1));
+            // AlgoTools.printMatrix(matricies[i].matrix);
+            // AlgoTools.printList(lists[i].list);
         }
-        System.out.println("List for 8-1b");
-        for (int i = 0; i < adjList8_1b.list.length; i++) {
-            System.out.print((i+1) + ":  ");
-            for (int q : adjList8_1b.list[i]) {
-                System.out.print(q + ",  ");
-            }
-            System.out.print('\n');
-        }
+
     }
 }
