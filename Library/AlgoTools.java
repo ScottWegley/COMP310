@@ -2,6 +2,7 @@ package Library;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 
 public class AlgoTools {
     public static double[][] matmult(double[][] arr1, double[][] arr2) throws IllegalArgumentException {
@@ -187,6 +188,17 @@ public class AlgoTools {
                 System.out.print("   ");
             }
             System.out.print("\n");
+        }
+    }
+
+    public static void printList(ArrayList<Integer>[] A){
+        for (int i = 0; i < A.length; i++) {
+            if(A[i].isEmpty()){continue;}
+            System.out.print((i+1) + ": " + A[i].get(0));
+            for (int j = 1; j < A[i].size(); j++) {
+                System.out.print(", " + A[i].get(j));
+            }
+            System.out.print('\n');
         }
     }
 }
