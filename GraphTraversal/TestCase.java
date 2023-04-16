@@ -65,6 +65,8 @@ public class TestCase {
             System.out.println("Graph " + (i+1));
             DepthFirstTraversal.run(matricies[i], 1);
             DepthFirstTraversal.run(lists[i],1);
+            BreadthFirstTraversal.run(matricies[i], 1);
+            BreadthFirstTraversal.run(lists[i],1);
             // System.out.println("Example " + (i+1));
             // AlgoTools.printMatrix(matricies[i].matrix);
             // AlgoTools.printList(lists[i].list);
