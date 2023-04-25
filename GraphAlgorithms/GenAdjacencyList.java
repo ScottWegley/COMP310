@@ -6,7 +6,7 @@ import java.util.HashMap;
 import GraphAlgorithms.Edge.ConnectionType;
 
 public class GenAdjacencyList<T> {
-    public HashMap<Object,ArrayList<T>> map;
+    public HashMap<T,ArrayList<T>> map;
 
     public void add(Edge<T> e){
         if(!map.containsKey(e.fromNode())){
