@@ -70,19 +70,20 @@ public class DepthFirstTraversal {
 
     public static void main(String[] args) {
         Edge[] arr = {
-                new Edge(1, 4, ConnectionType.BIDIRECTIONAL),
-                new Edge(2, 7, ConnectionType.BIDIRECTIONAL),
-                new Edge(7, 5, ConnectionType.BIDIRECTIONAL),
-                new Edge(2, 5, ConnectionType.BIDIRECTIONAL),
-                new Edge(7, 3, ConnectionType.BIDIRECTIONAL),
                 new Edge(1, 2, ConnectionType.BIDIRECTIONAL),
+                new Edge(2, 3, ConnectionType.BIDIRECTIONAL),
                 new Edge(3, 4, ConnectionType.BIDIRECTIONAL),
-                new Edge(3, 6, ConnectionType.BIDIRECTIONAL),
+                new Edge(4, 9, ConnectionType.BIDIRECTIONAL),
+                new Edge(4, 7, ConnectionType.BIDIRECTIONAL),
+                new Edge(7, 8, ConnectionType.BIDIRECTIONAL),
+                new Edge(7, 5, ConnectionType.BIDIRECTIONAL),
+                new Edge(1, 8, ConnectionType.BIDIRECTIONAL),
                 new Edge(6, 5, ConnectionType.BIDIRECTIONAL),
-                new Edge(5, 4, ConnectionType.BIDIRECTIONAL)
+                new Edge(2, 8, ConnectionType.BIDIRECTIONAL),
+                new Edge(3, 8, ConnectionType.BIDIRECTIONAL)
         };
         AdjacencyList list = new AdjacencyList(arr);
-        AlgoTools.printList(list.list);
+        // AlgoTools.printList(list.list);
         run(list, 1);
     }
 

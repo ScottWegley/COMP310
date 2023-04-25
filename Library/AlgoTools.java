@@ -3,6 +3,8 @@ package Library;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class AlgoTools {
     public static double[][] matmult(double[][] arr1, double[][] arr2) throws IllegalArgumentException {
@@ -120,7 +122,7 @@ public class AlgoTools {
         return identity;
     }
 
-    private static void swapRows(double[][] A, int r1, int r2){
+    private static void swapRows(double[][] A, int r1, int r2) {
         for (int i = 0; i < A[r1].length; i++) {
             double temp = A[r1][i];
             A[r1][i] = A[r2][i];
@@ -128,7 +130,7 @@ public class AlgoTools {
         }
     }
 
-    public static void printMatrix(double[][] A){
+    public static void printMatrix(double[][] A) {
         for (int i = 0; i < A.length; i++) {
             for (int j = 0; j < A[0].length; j++) {
                 if (A[i][j] > 0) {
@@ -159,15 +161,16 @@ public class AlgoTools {
     }
 
     public static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-    
+        if (places < 0)
+            throw new IllegalArgumentException();
+
         BigDecimal bd = BigDecimal.valueOf(value);
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
 
-    public static void reverseArray(double[] arr){
-        for (int i = 0; i < arr.length/2; i++) {
+    public static void reverseArray(double[] arr) {
+        for (int i = 0; i < arr.length / 2; i++) {
             double temp = arr[i];
             arr[i] = arr[arr.length - i - 1];
             arr[arr.length - i - 1] = temp;
@@ -175,7 +178,19 @@ public class AlgoTools {
     }
 
     public static void main(String[] args) {
-        
+
+    }
+
+    public static void printQueue(Queue<Integer> _q) {
+        Queue<Integer> q = new PriorityQueue<>();
+        q.addAll(_q);
+        if (q.size() != 0) {
+            System.out.print("Q: " + q.remove());
+            while (!q.isEmpty()) {
+                System.out.print(", " + q.remove());
+            }
+            System.out.print('\n');
+        }
     }
 
     public static void printMatrix(int[][] A) {
@@ -191,10 +206,12 @@ public class AlgoTools {
         }
     }
 
-    public static void printList(ArrayList<Integer>[] A){
+    public static void printList(ArrayList<Integer>[] A) {
         for (int i = 0; i < A.length; i++) {
-            if(A[i].isEmpty()){continue;}
-            System.out.print((i+1) + ": " + A[i].get(0));
+            if (A[i].isEmpty()) {
+                continue;
+            }
+            System.out.print((i + 1) + ": " + A[i].get(0));
             for (int j = 1; j < A[i].size(); j++) {
                 System.out.print(", " + A[i].get(j));
             }
