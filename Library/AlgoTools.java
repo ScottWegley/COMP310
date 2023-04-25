@@ -5,6 +5,8 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AlgoTools {
     public static double[][] matmult(double[][] arr1, double[][] arr2) throws IllegalArgumentException {
@@ -214,6 +216,18 @@ public class AlgoTools {
             System.out.print((i + 1) + ": " + A[i].get(0));
             for (int j = 1; j < A[i].size(); j++) {
                 System.out.print(", " + A[i].get(j));
+            }
+            System.out.print('\n');
+        }
+    }
+
+    public static void printGenAdjacencyList(HashMap<Object,ArrayList> map){
+        for (Map.Entry<Object,ArrayList> entry : map.entrySet()) {
+            System.out.print(entry.getKey() + ": ");
+            if(entry.getValue().size() == 0) continue;
+            System.out.print(entry.getValue().get(0));
+            for (int i = 1; i < entry.getValue().size(); i++) {
+                System.out.print(", " + entry.getValue().get(i));
             }
             System.out.print('\n');
         }
