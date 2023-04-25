@@ -221,8 +221,8 @@ public class AlgoTools {
         }
     }
 
-    public static void printGenAdjacencyList(HashMap<Object,ArrayList> map){
-        for (Map.Entry<Object,ArrayList> entry : map.entrySet()) {
+    public static <T> void printGenAdjacencyList(HashMap<T,ArrayList> map){
+        for (Map.Entry<T,ArrayList> entry : map.entrySet()) {
             System.out.print(entry.getKey() + ": ");
             if(entry.getValue().size() == 0) continue;
             System.out.print(entry.getValue().get(0));
@@ -232,4 +232,6 @@ public class AlgoTools {
             System.out.print('\n');
         }
     }
+
+    
 }
