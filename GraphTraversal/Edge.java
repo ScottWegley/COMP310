@@ -10,7 +10,7 @@ public class Edge {
     }
 
     private int privFromNode, privToNode;
-    ConnectionType privType;
+    private ConnectionType privType;
 
     /**
      * Creates a {@link ConnectionType#UNIDIRECTIONAL} edge between two nodes.
