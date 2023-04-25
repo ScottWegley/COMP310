@@ -1,4 +1,4 @@
-package Library;
+package GraphAlgorithms;
 
 public class Edge<T> {
    

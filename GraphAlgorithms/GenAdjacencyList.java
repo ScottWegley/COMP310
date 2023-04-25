@@ -1,9 +1,9 @@
-package Library;
+package GraphAlgorithms;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import Library.Edge.ConnectionType;
+import GraphAlgorithms.Edge.ConnectionType;
 
 public class GenAdjacencyList<T> {
     public HashMap<Object,ArrayList<T>> map;

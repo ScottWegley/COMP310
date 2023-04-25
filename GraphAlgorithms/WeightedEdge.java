@@ -1,4 +1,6 @@
-package Library;
+package GraphAlgorithms;
+
+import GraphAlgorithms.Edge.ConnectionType;
 
 public class WeightedEdge<T> extends Edge<T> {
 

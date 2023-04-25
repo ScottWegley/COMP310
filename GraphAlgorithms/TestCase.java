@@ -1,10 +1,7 @@
 package GraphAlgorithms;
 
+import GraphAlgorithms.Edge.ConnectionType;
 import Library.AlgoTools;
-import Library.Edge;
-import Library.GenAdjacencyList;
-import Library.WeightedEdge;
-import Library.Edge.ConnectionType;
 
 public class TestCase {
 
