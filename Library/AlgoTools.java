@@ -208,7 +208,7 @@ public class AlgoTools {
         }
     }
 
-    public static void printList(ArrayList<Integer>[] A) {
+    public static void printListArray(ArrayList<Integer>[] A) {
         for (int i = 0; i < A.length; i++) {
             if (A[i].isEmpty()) {
                 continue;
@@ -221,10 +221,24 @@ public class AlgoTools {
         }
     }
 
-    public static <T> void printGenAdjacencyList(HashMap<T,ArrayList<T>> map){
-        for (Map.Entry<T,ArrayList<T>> entry : map.entrySet()) {
+    public static <T> void printArrayList(ArrayList<T> arr){
+        if(arr.size() == 0){
+            return;
+        }
+        System.out.print("List: " + arr.get(0));
+        for (int i = 1; i < arr.size(); i++) {
+            System.out.print(", " + arr.get(i));
+        }
+        System.out.print('\n');
+    }
+
+    public static <T> void printGenAdjacencyList(HashMap<T, ArrayList<T>> map) {
+        for (Map.Entry<T, ArrayList<T>> entry : map.entrySet()) {
             System.out.print(entry.getKey() + ": ");
-            if(entry.getValue().size() == 0) continue;
+            if (entry.getValue().size() == 0) {
+                System.out.print('\n');
+                continue;
+            }
             System.out.print(entry.getValue().get(0));
             for (int i = 1; i < entry.getValue().size(); i++) {
                 System.out.print(", " + entry.getValue().get(i));
@@ -233,5 +247,4 @@ public class AlgoTools {
         }
     }
 
-    
 }
