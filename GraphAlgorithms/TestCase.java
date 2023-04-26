@@ -5,7 +5,7 @@ import Library.AlgoTools;
 
 public class TestCase {
 
-    static Edge[][] arrs = new Edge[][] {
+    static WeightedEdge[][] arrs = new WeightedEdge[][] {
             {
                     new WeightedEdge<String>("A", "B", ConnectionType.BIDIRECTIONAL, 2),
                     new WeightedEdge<String>("A", "F", ConnectionType.BIDIRECTIONAL, 3),
@@ -64,11 +64,11 @@ public class TestCase {
     };
 
     public static void main(String[] args) {
-        GenAdjacencyList[] lists = new GenAdjacencyList[arrs.length];
+        WeightedGenAdjacencyList<String>[] lists = new WeightedGenAdjacencyList[arrs.length];
         for (int i = 0; i < lists.length; i++) {
-            lists[i] = new GenAdjacencyList<>(arrs[i]);
+            lists[i] = new WeightedGenAdjacencyList(arrs[i]);
             System.out.println("Graph " + (i + 1));
-            AlgoTools.printGenAdjacencyList(lists[i].map);
+            DijkstraPrim.run(lists[i], "A");
         }
     }
 }
