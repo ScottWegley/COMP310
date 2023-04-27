@@ -25,6 +25,19 @@ public class Dijkstra {
                     "The specified start or destination does not exist in your adjacency list.");
         }
 
+        // Populates our ouptut and fringe with a list so that every node may have
+        // connections.
+        for (T key : adjList.map.keySet()) {
+            output.put(key, new ArrayList<T>());
+            fringe.put(key, new ArrayList<T>());
+            paths.put(key, new ArrayList<>());
+        }
+
+        // Initial fringe set up.
+        for (T connectedNode : adjList.map.get(_s)) {
+            fringe.get(_s).add(connectedNode);
+            paths.get(connectedNode).add(new WeightedEdge<>(_s, connectedNode, adjList.getWeight(_s, connectedNode)));
+        }
     }
 
     public static void main(String[] args) {
