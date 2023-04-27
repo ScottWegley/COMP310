@@ -74,6 +74,21 @@ public class Dijkstra {
             }
             output.get(start).add(end);
             fringe.get(start).remove(end);
+
+            // Update the fringe
+            for (T destination : adjList.map.get(end)) {
+                if (destination == _s) {
+                    continue;
+                }
+                if (paths.get(destination).size() == 0) {
+                    fringe.get(end).add(destination);
+                    paths.get(destination).addAll(paths.get(end));
+                    paths.get(destination)
+                            .add(new WeightedEdge<>(end, destination, adjList.getWeight(end, destination)));
+                } else {
+
+                }
+            }
             break;
         }
     }
