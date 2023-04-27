@@ -56,6 +56,24 @@ public class Dijkstra {
         }
 
         while (!connected(output, _d)) {
+            int min = 2147483647;
+            T start = null;
+            T end = null;
+            // Loop through all fringe connections and store the one with the least weight.
+            for (T origin : fringe.keySet()) {
+                for (T destination : fringe.get(origin)) {
+                    if (adjList.getWeight(origin, destination) < min) {
+                        min = adjList.getWeight(origin, destination);
+                        start = origin;
+                        end = destination;
+                    }
+                }
+            }
+            if (start == null || end == null) {
+                continue;
+            }
+            output.get(start).add(end);
+            fringe.get(start).remove(end);
             break;
         }
     }
