@@ -8,6 +8,25 @@ import Library.AlgoTools;
 
 public class Dijkstra {
 
+    /**
+     * Prints the shortest path from one node to another
+     * 
+     * @param adjList The Weighted Adjacency List of nodes to traverse
+     * @param _s      The node to start from
+     * @param _d      The destination node
+     */
+    public static <T> void run(WeightedGenAdjacencyList<T> adjList, T _s, T _d) {
+        HashMap<T, ArrayList<T>> output = new HashMap<>();
+        HashMap<T, ArrayList<T>> fringe = new HashMap<>();
+        HashMap<T, ArrayList<WeightedEdge<T>>> paths = new HashMap<>();
+
+        if (!adjList.map.keySet().contains(_s) || !adjList.map.keySet().contains(_d)) {
+            throw new IllegalArgumentException(
+                    "The specified start or destination does not exist in your adjacency list.");
+        }
+
+    }
+
     public static void main(String[] args) {
         WeightedEdge[] arr = new WeightedEdge[] {
                 new WeightedEdge<String>("A", "B", ConnectionType.BIDIRECTIONAL, 2),
