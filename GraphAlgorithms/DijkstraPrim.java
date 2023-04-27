@@ -2,7 +2,6 @@ package GraphAlgorithms;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 import GraphAlgorithms.Edge.ConnectionType;
@@ -10,9 +9,9 @@ import Library.AlgoTools;
 
 public class DijkstraPrim {
 
-    private static <T> boolean connectionsExist(HashMap<T, ArrayList<T>> check){
+    private static <T> boolean connectionsExist(HashMap<T, ArrayList<T>> check) {
         for (T key : check.keySet()) {
-            if(check.get(key).size() > 0){
+            if (check.get(key).size() > 0) {
                 return true;
             }
         }
@@ -61,7 +60,7 @@ public class DijkstraPrim {
 
             // Update the fringe
             for (T destination : adjList.map.get(end)) {
-                // Add every brand new node from our recent addition to output
+                // Add every brand new node from our recent addition to fringe
                 if (!mapped.contains(destination)) {
                     mapped.add(destination);
                     fringe.get(end).add(destination);
@@ -84,16 +83,16 @@ public class DijkstraPrim {
             }
         }
 
-        HashMap<T,T> toReverse = new HashMap<T,T>();
+        HashMap<T, T> toReverse = new HashMap<T, T>();
         for (T key : output.keySet()) {
             for (T value : output.get(key)) {
-                if(adjList.map.get(value).contains(key)){
+                if (adjList.map.get(value).contains(key)) {
                     toReverse.put(value, key);
                 }
             }
         }
 
-        for (Map.Entry<T,T> entry : toReverse.entrySet()) {
+        for (Map.Entry<T, T> entry : toReverse.entrySet()) {
             output.get(entry.getKey()).add(entry.getValue());
         }
 
