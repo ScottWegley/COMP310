@@ -9,6 +9,22 @@ import Library.AlgoTools;
 public class Dijkstra {
 
     /**
+     * Returns whether or not there are any connections in a list of connections
+     * 
+     * @param check A HashMap of nodes mapped to a list of all other nodes they are
+     *              connected to
+     * @return True if connections exist, false if not
+     */
+    private static <T> boolean connectionsExist(HashMap<T, ArrayList<T>> check) {
+        for (T key : check.keySet()) {
+            if (check.get(key).size() > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns whether or not a node is currently in our list of connections
      * 
      * @param set     A HashMap of nodes mapped to a list of all other nodes they
@@ -24,6 +40,15 @@ public class Dijkstra {
         }
         return false;
     }
+
+    private static <T> int totalWeight(ArrayList<WeightedEdge<T>> path) {
+        int total = 0;
+        for (WeightedEdge<T> edge : path) {
+            total += edge.weight();
+        }
+        return total;
+    }
+
     /**
      * Prints the shortest path from one node to another
      * 
@@ -89,6 +114,18 @@ public class Dijkstra {
 
                 }
             }
+
+            for (T key : paths.keySet()) {
+                if (paths.get(key).size() == 0) {
+                    continue;
+                }
+                System.out.print(key + "(" + totalWeight(paths.get(key)) +"): ");
+                System.out.print(paths.get(key).get(0));
+                for (int i = 1; i < paths.get(key).size(); i++) {
+                    System.out.print(", " + paths.get(key).get(i));
+                }
+                System.out.print('\n');
+            }
             break;
         }
     }
@@ -110,5 +147,7 @@ public class Dijkstra {
         };
 
         WeightedGenAdjacencyList input = new WeightedGenAdjacencyList<>(arr);
+        // AlgoTools.printGenAdjacencyList(input.map);
+        run(input, "A", "G");
     }
 }
