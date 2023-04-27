@@ -9,6 +9,22 @@ import Library.AlgoTools;
 public class Dijkstra {
 
     /**
+     * Returns whether or not a node is currently in our list of connections
+     * 
+     * @param set     A HashMap of nodes mapped to a list of all other nodes they
+     *                are connected to
+     * @param toCheck The node we are looking for in our list of connections
+     * @return True is there is a connection, false if there is not a connection
+     */
+    private static <T> boolean connected(HashMap<T, ArrayList<T>> set, T toCheck) {
+        for (T key : set.keySet()) {
+            if (set.get(key).contains(toCheck)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
      * Prints the shortest path from one node to another
      * 
      * @param adjList The Weighted Adjacency List of nodes to traverse
@@ -37,6 +53,10 @@ public class Dijkstra {
         for (T connectedNode : adjList.map.get(_s)) {
             fringe.get(_s).add(connectedNode);
             paths.get(connectedNode).add(new WeightedEdge<>(_s, connectedNode, adjList.getWeight(_s, connectedNode)));
+        }
+
+        while (!connected(output, _d)) {
+            break;
         }
     }
 
