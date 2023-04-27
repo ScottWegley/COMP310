@@ -38,4 +38,9 @@ public class WeightedEdge<T> extends Edge<T> {
         return privWeight;
     }
 
+    @Override
+    public String toString() {
+        return fromNode().toString() + (type() == ConnectionType.UNIDIRECTIONAL ? "==>" : "<==>") + toNode().toString() + "(" + weight() + ")";
+    }
+
 }
