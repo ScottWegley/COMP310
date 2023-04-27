@@ -67,8 +67,17 @@ public class TestCase {
         WeightedGenAdjacencyList<String>[] lists = new WeightedGenAdjacencyList[arrs.length];
         for (int i = 0; i < lists.length; i++) {
             lists[i] = new WeightedGenAdjacencyList(arrs[i]);
-            System.out.println("Graph " + (i + 1));
+            System.out.println("=============================");
+            System.out.println("Graph " + (i + 1) + " Minimum Spanning Tree");
+            System.out.println("=============================");
             DijkstraPrim.run(lists[i], "A");
         }
+        for (int i = 0; i < lists.length; i++) {
+                lists[i] = new WeightedGenAdjacencyList(arrs[i]);
+                System.out.println("===========================");
+                System.out.println("Graph " + (i + 1) + " Shortest Path A-->G");
+                System.out.println("===========================");
+                Dijkstra.run(lists[i], "A","G");
+            }
     }
 }

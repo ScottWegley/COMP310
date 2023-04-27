@@ -2,27 +2,14 @@ package GraphAlgorithms;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import GraphAlgorithms.Edge.ConnectionType;
 import Library.AlgoTools;
 
 public class Dijkstra {
 
-    /**
-     * Returns whether or not there are any connections in a list of connections
-     * 
-     * @param check A HashMap of nodes mapped to a list of all other nodes they are
-     *              connected to
-     * @return True if connections exist, false if not
-     */
-    private static <T> boolean connectionsExist(HashMap<T, ArrayList<T>> check) {
-        for (T key : check.keySet()) {
-            if (check.get(key).size() > 0) {
-                return true;
-            }
-        }
-        return false;
-    }
+    private static int accessCount = 0;
 
     /**
      * Returns whether or not a node is currently in our list of connections
@@ -111,23 +98,60 @@ public class Dijkstra {
                     paths.get(destination)
                             .add(new WeightedEdge<>(end, destination, adjList.getWeight(end, destination)));
                 } else {
-
+                    if (totalWeight(paths.get(destination)) > (totalWeight(paths.get(end))
+                            + adjList.getWeight(end, destination))) {
+                        fringe.get(end).add(destination);
+                        fringe.get(paths.get(destination).get(paths.get(destination).size() - 1).fromNode())
+                                .remove(destination);
+                        paths.get(destination).clear();
+                        paths.get(destination).addAll(paths.get(end));
+                        paths.get(destination)
+                                .add(new WeightedEdge<>(end, destination, adjList.getWeight(end, destination)));
+                    }
                 }
             }
 
-            for (T key : paths.keySet()) {
-                if (paths.get(key).size() == 0) {
-                    continue;
-                }
-                System.out.print(key + "(" + totalWeight(paths.get(key)) +"): ");
-                System.out.print(paths.get(key).get(0));
-                for (int i = 1; i < paths.get(key).size(); i++) {
-                    System.out.print(", " + paths.get(key).get(i));
-                }
-                System.out.print('\n');
-            }
-            break;
+            // System.out.println("PATHS");
+            // for (T key : paths.keySet()) {
+            // if (paths.get(key).size() == 0) {
+            // continue;
+            // }
+            // System.out.print(key + "(" + totalWeight(paths.get(key)) +"): ");
+            // System.out.print(paths.get(key).get(0));
+            // for (int i = 1; i < paths.get(key).size(); i++) {
+            // System.out.print(", " + paths.get(key).get(i));
+            // }
+            // System.out.print('\n');
+            // }
+
+            // System.out.println("OUTPUT");
+            // AlgoTools.printGenAdjacencyList(output);
+
+            // System.out.println("FRINGE");
+            // AlgoTools.printGenAdjacencyList(fringe);
+            // break;
         }
+
+        HashMap<T, T> toReverse = new HashMap<T, T>();
+        for (T key : output.keySet()) {
+            for (T value : output.get(key)) {
+                if (adjList.map.get(value).contains(key)) {
+                    toReverse.put(value, key);
+                }
+            }
+        }
+
+        for (Map.Entry<T, T> entry : toReverse.entrySet()) {
+            output.get(entry.getKey()).add(entry.getValue());
+        }
+
+        AlgoTools.printGenAdjacencyList(output);
+        System.out.print(_d + "(" + totalWeight(paths.get(_d)) + "): ");
+        System.out.print(paths.get(_d).get(0));
+        for (int i = 1; i < paths.get(_d).size(); i++) {
+            System.out.print(", " + paths.get(_d).get(i));
+        }
+        System.out.print('\n');
     }
 
     public static void main(String[] args) {
