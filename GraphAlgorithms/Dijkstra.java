@@ -63,7 +63,7 @@ public class Dijkstra {
         }
 
         // Initial fringe set up.
-        for (T connectedNode : adjList.map.get(_s)) {
+        for (T connectedNode : adjList.map.get(_s).keySet()) {
             accessCount++;
             fringe.get(_s).add(connectedNode);
             paths.get(connectedNode).add(new WeightedEdge<>(_s, connectedNode, adjList.getWeight(_s, connectedNode)));
@@ -91,7 +91,7 @@ public class Dijkstra {
             fringe.get(start).remove(end);
 
             // Update the fringe
-            for (T destination : adjList.map.get(end)) {
+            for (T destination : adjList.map.get(end).keySet()) {
                 accessCount++;
                 if (destination == _s) {
                     continue;
@@ -119,7 +119,7 @@ public class Dijkstra {
         HashMap<T, T> toReverse = new HashMap<T, T>();
         for (T key : output.keySet()) {
             for (T value : output.get(key)) {
-                if (adjList.map.get(value).contains(key)) {
+                if (adjList.map.get(value).keySet().contains(key)) {
                     toReverse.put(value, key);
                 }
             }

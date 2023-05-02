@@ -30,7 +30,7 @@ public class DijkstraPrim {
         }
 
         // Initial Fringe Setup
-        for (T connectedNode : adjList.map.get(_v)) {
+        for (T connectedNode : adjList.map.get(_v).keySet()) {
             fringe.get(_v).add(connectedNode);
             mapped.add(connectedNode);
         }
@@ -59,7 +59,7 @@ public class DijkstraPrim {
             fringe.get(start).remove(end);
 
             // Update the fringe
-            for (T destination : adjList.map.get(end)) {
+            for (T destination : adjList.map.get(end).keySet()) {
                 // Add every brand new node from our recent addition to fringe
                 if (!mapped.contains(destination)) {
                     mapped.add(destination);
@@ -86,7 +86,7 @@ public class DijkstraPrim {
         HashMap<T, T> toReverse = new HashMap<T, T>();
         for (T key : output.keySet()) {
             for (T value : output.get(key)) {
-                if (adjList.map.get(value).contains(key)) {
+                if (adjList.map.get(value).keySet().contains(key)) {
                     toReverse.put(value, key);
                 }
             }
