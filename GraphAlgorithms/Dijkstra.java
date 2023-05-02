@@ -47,6 +47,7 @@ public class Dijkstra {
         HashMap<T, ArrayList<T>> output = new HashMap<>();
         HashMap<T, ArrayList<T>> fringe = new HashMap<>();
         HashMap<T, ArrayList<WeightedEdge<T>>> paths = new HashMap<>();
+        accessCount = 0;
 
         if (!adjList.map.keySet().contains(_s) || !adjList.map.keySet().contains(_d)) {
             throw new IllegalArgumentException(
@@ -63,6 +64,7 @@ public class Dijkstra {
 
         // Initial fringe set up.
         for (T connectedNode : adjList.map.get(_s)) {
+            accessCount++;
             fringe.get(_s).add(connectedNode);
             paths.get(connectedNode).add(new WeightedEdge<>(_s, connectedNode, adjList.getWeight(_s, connectedNode)));
         }
@@ -74,6 +76,7 @@ public class Dijkstra {
             // Loop through all fringe connections and store the one with the least weight.
             for (T origin : fringe.keySet()) {
                 for (T destination : fringe.get(origin)) {
+                    accessCount++;
                     if (adjList.getWeight(origin, destination) < min) {
                         min = adjList.getWeight(origin, destination);
                         start = origin;
@@ -89,6 +92,7 @@ public class Dijkstra {
 
             // Update the fringe
             for (T destination : adjList.map.get(end)) {
+                accessCount++;
                 if (destination == _s) {
                     continue;
                 }
@@ -110,26 +114,6 @@ public class Dijkstra {
                     }
                 }
             }
-
-            // System.out.println("PATHS");
-            // for (T key : paths.keySet()) {
-            // if (paths.get(key).size() == 0) {
-            // continue;
-            // }
-            // System.out.print(key + "(" + totalWeight(paths.get(key)) +"): ");
-            // System.out.print(paths.get(key).get(0));
-            // for (int i = 1; i < paths.get(key).size(); i++) {
-            // System.out.print(", " + paths.get(key).get(i));
-            // }
-            // System.out.print('\n');
-            // }
-
-            // System.out.println("OUTPUT");
-            // AlgoTools.printGenAdjacencyList(output);
-
-            // System.out.println("FRINGE");
-            // AlgoTools.printGenAdjacencyList(fringe);
-            // break;
         }
 
         HashMap<T, T> toReverse = new HashMap<T, T>();
@@ -145,6 +129,7 @@ public class Dijkstra {
             output.get(entry.getKey()).add(entry.getValue());
         }
 
+        System.out.println("Accesses: " + accessCount);
         AlgoTools.printGenAdjacencyList(output);
         System.out.print(_d + "(" + totalWeight(paths.get(_d)) + "): ");
         System.out.print(paths.get(_d).get(0));
